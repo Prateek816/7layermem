@@ -1,6 +1,12 @@
+
 # 7layermem
 
-A **7-layer memory system for AI agents**. Give your agent long-term memory across conversations, knowledge, entities, workflows, and more — with just two methods.
+<img width="1022" height="700" alt="Screenshot 2026-05-31 at 2 05 00 AM" src="https://github.com/user-attachments/assets/077acbbd-85f3-4c3e-a5fb-2a19ade9b2fe" />
+
+
+A **7-layer memory framework for AI agents** that enables persistent, structured long-term memory across conversations, knowledge, entities, workflows, summaries, tool interactions, and more.
+
+Built for modern agentic systems, 7layermem helps agents retain context across sessions, reduce hallucinations through memory-grounded retrieval, and perform more reliably in long-running workflows — all through a simple API consisting of just two methods: `remember()` and `recall()`.
 
 ```python
 from src.memory import AgentMemory
