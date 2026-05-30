@@ -1,5 +1,4 @@
 """
-usage_example.py
 
 Demonstrates how to use EntityGraphMemory with Neo4j.
 """
@@ -8,18 +7,11 @@ from src.graphDB import EntityGraphMemory
 
 
 def main():
-    # ─────────────────────────────────────────────────────────────────────
-    # 1. Initialize (reads NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD from env)
-    # ─────────────────────────────────────────────────────────────────────
     memory = EntityGraphMemory(
         uri="bolt://localhost:7687",
         username="neo4j",
         password="your_password_here",
     )
-
-    # ─────────────────────────────────────────────────────────────────────
-    # 2. Write entities manually
-    # ─────────────────────────────────────────────────────────────────────
     memory.write_entity(
         name="Alice",
         entity_type="PERSON",
@@ -32,10 +24,6 @@ def main():
         entity_type="ORGANIZATION",
         properties={"industry": "Tech", "location": "San Francisco"},
     )
-
-    # ─────────────────────────────────────────────────────────────────────
-    # 3. Write relationships
-    # ─────────────────────────────────────────────────────────────────────
     memory.write_relationship(
         source="Alice",
         target="Acme Corp",
@@ -43,9 +31,6 @@ def main():
         properties={"since": "2023-01-15"},
     )
 
-    # ─────────────────────────────────────────────────────────────────────
-    # 4. Extract entities from text using LLM
-    # ─────────────────────────────────────────────────────────────────────
     text = """
     John is a data scientist at Google. He works closely with Sarah,
     who is the VP of Engineering. They are building a new ML platform
@@ -55,10 +40,6 @@ def main():
     result = memory.write_entities_from_text(text, thread_id="thread_002")
     print(f"Extracted {result['entities_written']} entities and {result['relationships_written']} relationships")
 
-    # ─────────────────────────────────────────────────────────────────────
-    # 5. Search entities
-    # ─────────────────────────────────────────────────────────────────────
-    # Search by name
     alice = memory.search_entity("Alice")
     print(f"Found: {alice}")
 
@@ -66,9 +47,6 @@ def main():
     people = memory.search_entity("", entity_type="PERSON")
     print(f"People: {people}")
 
-    # ─────────────────────────────────────────────────────────────────────
-    # 6. Get relationships
-    # ─────────────────────────────────────────────────────────────────────
     alice_rels = memory.get_related_entities("Alice")
     print(f"Alice's relationships: {alice_rels}")
 
@@ -76,12 +54,8 @@ def main():
     extended = memory.get_entity_relationships("Alice", depth=2)
     print(f"Alice's extended network: {extended}")
 
-    # ─────────────────────────────────────────────────────────────────────
-    # 7. Compatible interface with MemoryManager
-    # ─────────────────────────────────────────────────────────────────────
     from langchain_core.documents import Document
 
-    # Write as documents (compatible with existing write_entity signature)
     memory.write_entity_documents(
         texts=["Bob is a product manager", "Carol is a designer"],
         metadatas=[

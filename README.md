@@ -38,6 +38,119 @@ Most AI agents lose context between sessions. 7layermem gives your agent **persi
 pip install -r requirements.txt
 ```
 
+## Installation
+
+### Prerequisites
+
+- Python 3.10+
+- pip
+- (Optional) Neo4j for graph-based entity memory
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Prateek816/7layermem.git
+cd 7layermem
+```
+
+### 2. Create a Virtual Environment
+
+#### macOS / Linux
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+```
+
+#### Windows
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+Install all required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+
+### 4. Verify Installation
+
+Run the demo:
+
+```bash
+python agent.py --demo
+```
+
+Expected output:
+
+```text
+✅ All databases and vector stores initialized successfully.
+============================================================
+AGENT MEMORY DEMO
+============================================================
+...
+============================================================
+DEMO COMPLETE
+============================================================
+```
+
+### 5. Run Tests
+
+Run the complete test suite:
+
+```bash
+python -m pytest tests/ -v
+```
+
+Or run individual test suites:
+
+```bash
+python -m pytest tests/test_agent_memory.py -v
+python -m pytest tests/test_memory_manager.py -v
+```
+
+### Data Directory
+
+On first run, 7layermem automatically creates:
+
+```text
+data/
+├── conversations.db
+├── tool_logs.db
+├── chroma/
+└── embeddings/
+```
+
+No manual database setup is required.
+
+### Neo4j Configuration (Optional)
+
+```python
+from src.memory import AgentMemory
+
+memory = AgentMemory.from_config(
+    data_dir="./data",
+    neo4j_uri="bolt://localhost:7687",
+    neo4j_password="password"
+)
+```
+
+If Neo4j is not configured, 7layermem automatically falls back to ChromaDB for entity memory.
+
+### Upgrade
+
+To pull the latest changes:
+
+```bash
+git pull origin main
+pip install -r requirements.txt --upgrade
+```
+
 ### Use in your agent
 
 ```python

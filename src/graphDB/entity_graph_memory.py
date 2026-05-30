@@ -1,5 +1,4 @@
 """
-entity_graph_memory.py
 
 EntityGraphMemory — Neo4j-backed entity memory using LangChain.
 

@@ -1,6 +1,4 @@
 """
-agent_memory.py
-
 AgentMemory — ultra-simple memory interface for AI agents.
 
 Two methods:

@@ -1,13 +1,3 @@
-"""
-memory_manager.py
-
-MemoryManager — unified read/write interface over StoreManager.
-
-Covers:
-  - SQLite tables  : CONVERSATIONAL_MEMORY, TOOL_LOG_MEMORY
-  - Chroma stores  : SEMANTIC, WORKFLOW, TOOLBOX, ENTITY, SUMMARY
-"""
-
 from __future__ import annotations
 
 import hashlib
