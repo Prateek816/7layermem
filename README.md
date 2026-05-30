@@ -35,14 +35,7 @@ Most AI agents lose context between sessions. 7layermem gives your agent **persi
 ### Install
 
 ```bash
-# Core dependencies
-pip install langchain-chroma langchain-huggingface sentence-transformers chromadb
-
-# Optional: Neo4j graph memory
-pip install neo4j langchain-community
-
-# Optional: RAG components
-pip install rank-bm25 nltk numpy
+pip install -r requirements.txt
 ```
 
 ### Use in your agent
