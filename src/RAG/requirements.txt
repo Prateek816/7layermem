@@ -1,0 +1,19 @@
+# Hybrid RAG System Dependencies
+
+# Embeddings and Vector Store
+langchain-huggingface>=0.1.0
+langchain-chroma>=0.1.0
+sentence-transformers>=2.6.0
+chromadb>=0.5.0
+
+# BM25 Retrieval
+rank-bm25>=0.2.2
+
+# Text Processing
+nltk>=3.8.0
+
+# Computation
+numpy>=1.24.0
+
+# Optional for file processing
+python-magic>=0.4.27  # For better file type detection
