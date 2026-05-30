@@ -223,6 +223,72 @@ When you call `recall(query)`, it searches all layers and ranks results:
 
 Results are deduplicated and sorted by score.
 
+## Knowledge Ingestion
+
+7layermem can build a knowledge base from your own documents using the built-in RAG pipeline.
+
+### Step 1: Add Your Documents
+
+Place your files and folders inside the `knowledge/` directory:
+
+```text
+knowledge/
+├── company_docs/
+│   ├── onboarding.md
+│   ├── policies.pdf
+│   └── architecture.txt
+├── product_docs/
+│   ├── api_reference.md
+│   └── faq.txt
+└── notes.md
+```
+
+You can organize documents into subfolders however you like. The ingestor will recursively process supported files.
+
+### Step 2: Ingest the Knowledge Base
+
+```python
+from pathlib import Path
+from src.RAG import RAGConfig, KnowledgeIngestor
+
+config = RAGConfig(
+    knowledge_dir=Path("knowledge"),
+    data_dir=Path("data"),
+)
+
+ingestor = KnowledgeIngestor(config)
+ingestor.ingest_folder()
+```
+
+### Step 3: Query Your Knowledge
+
+```python
+from src.RAG import HybridRetriever
+
+retriever = HybridRetriever(config)
+
+results = retriever.retrieve(
+    "How does the onboarding process work?",
+    k=5
+)
+
+for doc in results:
+    print(doc.page_content)
+```
+
+### Supported Use Cases
+
+- Company knowledge bases
+- Product documentation
+- Technical documentation
+- Research papers
+- Personal notes
+- Agent-specific knowledge
+- Internal wikis
+- Standard RAG applications
+
+> **Note:** Any new files added to the `knowledge/` folder must be re-ingested before they become searchable by the retriever.
+
 ## Advanced Usage
 
 ### With Neo4j Graph Memory
