@@ -8,3 +8,5 @@ examples/
 data/
 mem_db/
 memory_db/
+.agents/
+skills-lock.json

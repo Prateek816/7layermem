@@ -433,6 +433,14 @@ class AgentMemory:
         results = self._deduplicate(results)
         return results[:k]
 
+    # ══════════════════════════════════════════════════════════════════════
+    # CLEAR
+    # ══════════════════════════════════════════════════════════════════════
+
+    def clear_thread(self, thread_id: str) -> None:
+        """Delete all conversation messages for a given thread."""
+        self._mm.delete_thread_conversations(thread_id)
+
     # ── Internal helpers ────────────────────────────────────────────────
 
     def _docs_to_results(
