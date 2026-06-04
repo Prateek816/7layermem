@@ -6,3 +6,5 @@ knowledge/sample_
 __pycache__/
 examples/
 data/
+mem_db/
+memory_db/
